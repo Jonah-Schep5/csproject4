@@ -1,8 +1,9 @@
 /**
  * Represents a drone in the air traffic control system.
  *
- * @author CS3114/5040 Staff
- * @version Fall 2025
+ * @author Jonah Schepers
+ * @author Rowan Muhoberac
+ * @version December 8, 2025
  */
 public class Drone extends AirObject {
     /**
@@ -37,12 +38,21 @@ public class Drone extends AirObject {
      * @param numEngines
      *            The number of engines
      */
-    public Drone(String name, int xorig, int yorig, int zorig, int xwidth,
-        int ywidth, int zwidth, String brand, int numEngines) {
+    public Drone(
+        String name,
+        int xorig,
+        int yorig,
+        int zorig,
+        int xwidth,
+        int ywidth,
+        int zwidth,
+        String brand,
+        int numEngines) {
         super(name, xorig, yorig, zorig, xwidth, ywidth, zwidth);
         this.brand = brand;
         this.numEngines = numEngines;
     }
+
 
     /**
      * Get the brand
@@ -53,6 +63,7 @@ public class Drone extends AirObject {
         return brand;
     }
 
+
     /**
      * Get the number of engines
      *
@@ -61,6 +72,7 @@ public class Drone extends AirObject {
     public int getNumEngines() {
         return numEngines;
     }
+
 
     /**
      * Check if this drone is valid
@@ -101,6 +113,7 @@ public class Drone extends AirObject {
         return !(brand == null || numEngines < 1);
     }
 
+
     /**
      * Get string representation of drone
      *
@@ -108,9 +121,8 @@ public class Drone extends AirObject {
      */
     @Override
     public String toString() {
-        return "Drone " + getName() + " " + getXorig() + " " + getYorig()
-            + " " + getZorig() + " " + getXwidth() + " " + getYwidth() + " "
+        return "Drone " + getName() + " " + getXorig() + " " + getYorig() + " "
+            + getZorig() + " " + getXwidth() + " " + getYwidth() + " "
             + getZwidth() + " " + brand + " " + numEngines;
     }
 }
-

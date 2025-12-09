@@ -1,8 +1,9 @@
 /**
  * Represents a bird in the air traffic control system.
  *
- * @author CS3114/5040 Staff
- * @version Fall 2025
+ * @author Jonah Schepers
+ * @author Rowan Muhoberac
+ * @version December 8, 2025
  */
 public class Bird extends AirObject {
     /**
@@ -37,12 +38,21 @@ public class Bird extends AirObject {
      * @param number
      *            The number of birds
      */
-    public Bird(String name, int xorig, int yorig, int zorig, int xwidth,
-        int ywidth, int zwidth, String type, int number) {
+    public Bird(
+        String name,
+        int xorig,
+        int yorig,
+        int zorig,
+        int xwidth,
+        int ywidth,
+        int zwidth,
+        String type,
+        int number) {
         super(name, xorig, yorig, zorig, xwidth, ywidth, zwidth);
         this.type = type;
         this.number = number;
     }
+
 
     /**
      * Get the type
@@ -53,6 +63,7 @@ public class Bird extends AirObject {
         return type;
     }
 
+
     /**
      * Get the number
      *
@@ -61,6 +72,7 @@ public class Bird extends AirObject {
     public int getNumber() {
         return number;
     }
+
 
     /**
      * Check if this bird is valid
@@ -102,6 +114,7 @@ public class Bird extends AirObject {
         return !(number < 1 || type == null);
     }
 
+
     /**
      * Get string representation of bird
      *
@@ -109,9 +122,8 @@ public class Bird extends AirObject {
      */
     @Override
     public String toString() {
-        return "Bird " + getName() + " " + getXorig() + " " + getYorig()
-            + " " + getZorig() + " " + getXwidth() + " " + getYwidth() + " "
+        return "Bird " + getName() + " " + getXorig() + " " + getYorig() + " "
+            + getZorig() + " " + getXwidth() + " " + getYwidth() + " "
             + getZwidth() + " " + type + " " + number;
     }
 }
-

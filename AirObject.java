@@ -3,8 +3,9 @@
  * All air objects have a 3D bounding box defined by origin coordinates
  * and widths in each dimension.
  *
- * @author CS3114/5040 Staff
- * @version Fall 2025
+ * @author Jonah Schepers
+ * @author Rowan Muhoberac
+ * @version December 8, 2025
  */
 public abstract class AirObject implements Comparable<AirObject> {
     /**
@@ -60,8 +61,14 @@ public abstract class AirObject implements Comparable<AirObject> {
      * @param zwidth
      *            The width in the z dimension
      */
-    public AirObject(String name, int xorig, int yorig, int zorig, int xwidth,
-        int ywidth, int zwidth) {
+    public AirObject(
+        String name,
+        int xorig,
+        int yorig,
+        int zorig,
+        int xwidth,
+        int ywidth,
+        int zwidth) {
         this.name = name;
         this.xorig = xorig;
         this.yorig = yorig;
@@ -70,6 +77,7 @@ public abstract class AirObject implements Comparable<AirObject> {
         this.ywidth = ywidth;
         this.zwidth = zwidth;
     }
+
 
     /**
      * Get the x-coordinate of the origin
@@ -80,6 +88,7 @@ public abstract class AirObject implements Comparable<AirObject> {
         return xorig;
     }
 
+
     /**
      * Get the y-coordinate of the origin
      *
@@ -88,6 +97,7 @@ public abstract class AirObject implements Comparable<AirObject> {
     public int getYorig() {
         return yorig;
     }
+
 
     /**
      * Get the z-coordinate of the origin
@@ -98,6 +108,7 @@ public abstract class AirObject implements Comparable<AirObject> {
         return zorig;
     }
 
+
     /**
      * Get the width in the x dimension
      *
@@ -106,6 +117,7 @@ public abstract class AirObject implements Comparable<AirObject> {
     public int getXwidth() {
         return xwidth;
     }
+
 
     /**
      * Get the width in the y dimension
@@ -116,6 +128,7 @@ public abstract class AirObject implements Comparable<AirObject> {
         return ywidth;
     }
 
+
     /**
      * Get the width in the z dimension
      *
@@ -125,6 +138,7 @@ public abstract class AirObject implements Comparable<AirObject> {
         return zwidth;
     }
 
+
     /**
      * Get the name of the air object
      *
@@ -133,6 +147,7 @@ public abstract class AirObject implements Comparable<AirObject> {
     public String getName() {
         return name;
     }
+
 
     /**
      * Compare two AirObjects by name (alphabetically)
@@ -156,6 +171,7 @@ public abstract class AirObject implements Comparable<AirObject> {
         return this.name.compareTo(other.name);
     }
 
+
     /**
      * Check if this bounding box intersects with another bounding box
      *
@@ -167,13 +183,13 @@ public abstract class AirObject implements Comparable<AirObject> {
         if (other == null) {
             return false;
         }
-        return (this.xorig < other.xorig + other.xwidth)
-            && (this.xorig + this.xwidth > other.xorig)
-            && (this.yorig < other.yorig + other.ywidth)
-            && (this.yorig + this.ywidth > other.yorig)
-            && (this.zorig < other.zorig + other.zwidth)
-            && (this.zorig + this.zwidth > other.zorig);
+        return (this.xorig < other.xorig + other.xwidth) && (this.xorig
+            + this.xwidth > other.xorig) && (this.yorig < other.yorig
+                + other.ywidth) && (this.yorig + this.ywidth > other.yorig)
+            && (this.zorig < other.zorig + other.zwidth) && (this.zorig
+                + this.zwidth > other.zorig);
     }
+
 
     /**
      * Check if this bounding box intersects with a given bounding box
@@ -192,12 +208,18 @@ public abstract class AirObject implements Comparable<AirObject> {
      *            The z width of the box
      * @return True if the boxes intersect
      */
-    public boolean intersects(int x, int y, int z, int xwid, int ywid,
+    public boolean intersects(
+        int x,
+        int y,
+        int z,
+        int xwid,
+        int ywid,
         int zwid) {
         return (this.xorig < x + xwid) && (this.xorig + this.xwidth > x)
             && (this.yorig < y + ywid) && (this.yorig + this.ywidth > y)
             && (this.zorig < z + zwid) && (this.zorig + this.zwidth > z);
     }
+
 
     /**
      * Check if this bounding box is contained within a given region
@@ -216,12 +238,16 @@ public abstract class AirObject implements Comparable<AirObject> {
      *            The z width of the region
      * @return True if this box is contained within the region
      */
-    public boolean isContainedIn(int x, int y, int z, int xwid, int ywid,
+    public boolean isContainedIn(
+        int x,
+        int y,
+        int z,
+        int xwid,
+        int ywid,
         int zwid) {
         return (this.xorig >= x) && (this.yorig >= y) && (this.zorig >= z)
-            && (this.xorig + this.xwidth <= x + xwid)
-            && (this.yorig + this.ywidth <= y + ywid)
-            && (this.zorig + this.zwidth <= z + zwid);
+            && (this.xorig + this.xwidth <= x + xwid) && (this.yorig
+                + this.ywidth <= y + ywid) && (this.zorig + this.zwidth <= z
+                    + zwid);
     }
 }
-

@@ -3,8 +3,9 @@ import java.util.Random;
 /**
  * The world for this project. We have a Skip List and a Bintree
  *
- * @author CS3114/5040 Staff
- * @version Fall 2025
+ * @author Jonah Schepers
+ * @author Rowan Muhoberac
+ * @version December 8, 2025
  */
 public class WorldDB implements ATC {
     /**
@@ -36,6 +37,7 @@ public class WorldDB implements ATC {
         clear();
     }
 
+
     /**
      * Clear the world
      */
@@ -43,6 +45,7 @@ public class WorldDB implements ATC {
         skipList = new SkipList<AirObject>(rnd);
         bintree = new Bintree();
     }
+
 
     /**
      * Validate an AirObject based on its type
@@ -55,36 +58,37 @@ public class WorldDB implements ATC {
         if (a == null || a.getName() == null || a.getName().isEmpty()) {
             return false;
         }
-        if (a.getXorig() < 0 || a.getXorig() > 1023 || a.getXwidth() < 1
-            || a.getXwidth() > 1024 || a.getXorig() + a.getXwidth() > 1024) {
+        if (a.getXorig() < 0 || a.getXorig() > 1023 || a.getXwidth() < 1 || a
+            .getXwidth() > 1024 || a.getXorig() + a.getXwidth() > 1024) {
             return false;
         }
-        if (a.getYorig() < 0 || a.getYorig() > 1023 || a.getYwidth() < 1
-            || a.getYwidth() > 1024 || a.getYorig() + a.getYwidth() > 1024) {
+        if (a.getYorig() < 0 || a.getYorig() > 1023 || a.getYwidth() < 1 || a
+            .getYwidth() > 1024 || a.getYorig() + a.getYwidth() > 1024) {
             return false;
         }
-        if (a.getZorig() < 0 || a.getZorig() > 1023 || a.getZwidth() < 1
-            || a.getZwidth() > 1024 || a.getZorig() + a.getZwidth() > 1024) {
+        if (a.getZorig() < 0 || a.getZorig() > 1023 || a.getZwidth() < 1 || a
+            .getZwidth() > 1024 || a.getZorig() + a.getZwidth() > 1024) {
             return false;
         }
 
         if (a instanceof Balloon) {
-            return ((Balloon) a).isValid();
+            return ((Balloon)a).isValid();
         }
         if (a instanceof AirPlane) {
-            return ((AirPlane) a).isValid();
+            return ((AirPlane)a).isValid();
         }
         if (a instanceof Drone) {
-            return ((Drone) a).isValid();
+            return ((Drone)a).isValid();
         }
         if (a instanceof Bird) {
-            return ((Bird) a).isValid();
+            return ((Bird)a).isValid();
         }
         if (a instanceof Rocket) {
-            return ((Rocket) a).isValid();
+            return ((Rocket)a).isValid();
         }
         return false;
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -109,6 +113,7 @@ public class WorldDB implements ATC {
         }
         return false;
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -138,13 +143,15 @@ public class WorldDB implements ATC {
         AirObject[] allObjects = getAllObjects();
         bintree = new Bintree();
         for (int i = 0; i < allObjects.length; i++) {
-            if (allObjects[i] != null && !allObjects[i].getName().equals(name)) {
+            if (allObjects[i] != null && !allObjects[i].getName().equals(
+                name)) {
                 bintree.insert(allObjects[i]);
             }
         }
 
         return removed.toString();
     }
+
 
     /**
      * Find an AirObject by name
@@ -177,6 +184,7 @@ public class WorldDB implements ATC {
             super(name, 0, 0, 0, 1, 1, 1);
         }
 
+
         @Override
         public String toString() {
             return "";
@@ -198,10 +206,11 @@ public class WorldDB implements ATC {
         }
         AirObject[] result = new AirObject[range.length];
         for (int i = 0; i < range.length; i++) {
-            result[i] = (AirObject) range[i];
+            result[i] = (AirObject)range[i];
         }
         return result;
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -214,6 +223,7 @@ public class WorldDB implements ATC {
         return skipList.toString();
     }
 
+
     // ----------------------------------------------------------
     /**
      * Return a listing of the Bintree nodes in preorder. See the sample test
@@ -224,6 +234,7 @@ public class WorldDB implements ATC {
     public String printbintree() {
         return bintree.print();
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -246,6 +257,7 @@ public class WorldDB implements ATC {
 
         return found.toString();
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -289,6 +301,7 @@ public class WorldDB implements ATC {
         return result.toString();
     }
 
+
     // ----------------------------------------------------------
     /**
      * Return a listing of all collisions between AirObjects bounding boxes that
@@ -301,6 +314,7 @@ public class WorldDB implements ATC {
     public String collisions() {
         return bintree.findCollisions();
     }
+
 
     // ----------------------------------------------------------
     /**

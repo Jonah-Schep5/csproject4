@@ -4,8 +4,9 @@ import java.util.Random;
  * SkipList data structure for storing Comparable objects.
  * This implementation uses a probabilistic skip list with random heights.
  *
- * @author CS3114/5040 Staff
- * @version Fall 2025
+ * @author Jonah Schepers
+ * @author Rowan Muhoberac
+ * @version December 8, 2025
  * @param <E>
  *            The type of elements stored in the skip list (must be Comparable)
  */
@@ -88,6 +89,7 @@ public class SkipList<E extends Comparable<E>> {
         this.head = new SkipNode<E>(null, MAX_LEVEL);
     }
 
+
     /**
      * Generate a random level for a new node
      * Uses OpenDSA approach: Pick a level using a geometric distribution
@@ -96,11 +98,13 @@ public class SkipList<E extends Comparable<E>> {
      */
     private int randomLevel() {
         int lev;
-        for (lev = 0; Math.abs(random.nextInt()) % 2 == 0 && lev < MAX_LEVEL; lev++) {
+        for (lev = 0; Math.abs(random.nextInt()) % 2 == 0
+            && lev < MAX_LEVEL; lev++) {
             // Do nothing - continue loop while random is even
         }
         return lev;
     }
+
 
     /**
      * Insert an element into the skip list
@@ -119,8 +123,8 @@ public class SkipList<E extends Comparable<E>> {
         SkipNode<E> current = head;
 
         for (int i = maxLevel; i >= 0; i--) {
-            while (current.forward[i] != null
-                && current.forward[i].data.compareTo(element) < 0) {
+            while (current.forward[i] != null && current.forward[i].data
+                .compareTo(element) < 0) {
                 current = current.forward[i];
             }
             update[i] = current;
@@ -151,6 +155,7 @@ public class SkipList<E extends Comparable<E>> {
         return true;
     }
 
+
     /**
      * Remove an element from the skip list
      *
@@ -168,8 +173,8 @@ public class SkipList<E extends Comparable<E>> {
         SkipNode<E> current = head;
 
         for (int i = maxLevel; i >= 0; i--) {
-            while (current.forward[i] != null
-                && current.forward[i].data.compareTo(element) < 0) {
+            while (current.forward[i] != null && current.forward[i].data
+                .compareTo(element) < 0) {
                 current = current.forward[i];
             }
             update[i] = current;
@@ -193,6 +198,7 @@ public class SkipList<E extends Comparable<E>> {
         return current.data;
     }
 
+
     /**
      * Find an element in the skip list
      *
@@ -208,8 +214,8 @@ public class SkipList<E extends Comparable<E>> {
         SkipNode<E> current = head;
 
         for (int i = maxLevel; i >= 0; i--) {
-            while (current.forward[i] != null
-                && current.forward[i].data.compareTo(element) < 0) {
+            while (current.forward[i] != null && current.forward[i].data
+                .compareTo(element) < 0) {
                 current = current.forward[i];
             }
         }
@@ -222,6 +228,7 @@ public class SkipList<E extends Comparable<E>> {
 
         return null;
     }
+
 
     /**
      * Get all elements in a range
@@ -243,8 +250,8 @@ public class SkipList<E extends Comparable<E>> {
 
         SkipNode<E> current = head;
         for (int i = maxLevel; i >= 0; i--) {
-            while (current.forward[i] != null
-                && current.forward[i].data.compareTo(min) < 0) {
+            while (current.forward[i] != null && current.forward[i].data
+                .compareTo(min) < 0) {
                 current = current.forward[i];
             }
         }
@@ -257,7 +264,7 @@ public class SkipList<E extends Comparable<E>> {
             temp = temp.forward[0];
         }
 
-        E[] result = (E[]) new Comparable[count];
+        E[] result = (E[])new Comparable[count];
         int index = 0;
         while (current != null && current.data.compareTo(max) <= 0) {
             result[index++] = current.data;
@@ -266,6 +273,7 @@ public class SkipList<E extends Comparable<E>> {
 
         return result;
     }
+
 
     /**
      * Get a string representation of the skip list in alphabetical order
@@ -278,7 +286,7 @@ public class SkipList<E extends Comparable<E>> {
         }
 
         StringBuilder sb = new StringBuilder();
-        
+
         int actualMaxLevel = -1;
         SkipNode<E> temp = head.forward[0];
         while (temp != null) {
@@ -287,11 +295,11 @@ public class SkipList<E extends Comparable<E>> {
             }
             temp = temp.forward[0];
         }
-        
+
         sb.append("Node has depth ");
         sb.append(actualMaxLevel + 1);
         sb.append(", Value (null)\r\n");
-        
+
         SkipNode<E> current = head.forward[0];
         int nodeCount = 0;
 
@@ -315,6 +323,7 @@ public class SkipList<E extends Comparable<E>> {
         return sb.toString();
     }
 
+
     /**
      * Get the size of the skip list
      *
@@ -323,6 +332,7 @@ public class SkipList<E extends Comparable<E>> {
     public int size() {
         return size;
     }
+
 
     /**
      * Check if the skip list is empty
@@ -333,4 +343,3 @@ public class SkipList<E extends Comparable<E>> {
         return size == 0;
     }
 }
-

@@ -1,8 +1,9 @@
 /**
  * Represents a balloon in the air traffic control system.
  *
- * @author CS3114/5040 Staff
- * @version Fall 2025
+ * @author Jonah Schepers
+ * @author Rowan Muhoberac
+ * @version December 8, 2025
  */
 public class Balloon extends AirObject {
     /**
@@ -37,12 +38,21 @@ public class Balloon extends AirObject {
      * @param ascentRate
      *            The ascent rate
      */
-    public Balloon(String name, int xorig, int yorig, int zorig, int xwidth,
-        int ywidth, int zwidth, String type, int ascentRate) {
+    public Balloon(
+        String name,
+        int xorig,
+        int yorig,
+        int zorig,
+        int xwidth,
+        int ywidth,
+        int zwidth,
+        String type,
+        int ascentRate) {
         super(name, xorig, yorig, zorig, xwidth, ywidth, zwidth);
         this.type = type;
         this.ascentRate = ascentRate;
     }
+
 
     /**
      * Get the type of balloon
@@ -53,6 +63,7 @@ public class Balloon extends AirObject {
         return type;
     }
 
+
     /**
      * Get the ascent rate
      *
@@ -61,6 +72,7 @@ public class Balloon extends AirObject {
     public int getAscentRate() {
         return ascentRate;
     }
+
 
     /**
      * Check if this balloon is valid
@@ -101,6 +113,7 @@ public class Balloon extends AirObject {
         return !((ascentRate < 0) || (type == null));
     }
 
+
     /**
      * Get string representation of balloon
      *
@@ -113,4 +126,3 @@ public class Balloon extends AirObject {
             + getZwidth() + " " + type + " " + ascentRate;
     }
 }
-

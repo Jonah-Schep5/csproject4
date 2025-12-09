@@ -1,8 +1,9 @@
 /**
  * Represents an airplane in the air traffic control system.
  *
- * @author CS3114/5040 Staff
- * @version Fall 2025
+ * @author Jonah Schepers
+ * @author Rowan Muhoberac
+ * @version December 8, 2025
  */
 public class AirPlane extends AirObject {
     /**
@@ -44,14 +45,23 @@ public class AirPlane extends AirObject {
      * @param numEngines
      *            The number of engines
      */
-    public AirPlane(String name, int xorig, int yorig, int zorig, int xwidth,
-        int ywidth, int zwidth, String carrier, int flightNumber,
+    public AirPlane(
+        String name,
+        int xorig,
+        int yorig,
+        int zorig,
+        int xwidth,
+        int ywidth,
+        int zwidth,
+        String carrier,
+        int flightNumber,
         int numEngines) {
         super(name, xorig, yorig, zorig, xwidth, ywidth, zwidth);
         this.carrier = carrier;
         this.flightNumber = flightNumber;
         this.numEngines = numEngines;
     }
+
 
     /**
      * Get the carrier
@@ -62,6 +72,7 @@ public class AirPlane extends AirObject {
         return carrier;
     }
 
+
     /**
      * Get the flight number
      *
@@ -71,6 +82,7 @@ public class AirPlane extends AirObject {
         return flightNumber;
     }
 
+
     /**
      * Get the number of engines
      *
@@ -79,6 +91,7 @@ public class AirPlane extends AirObject {
     public int getNumEngines() {
         return numEngines;
     }
+
 
     /**
      * Check if this airplane is valid
@@ -122,6 +135,7 @@ public class AirPlane extends AirObject {
         return !(flightNumber < 1 || numEngines < 1);
     }
 
+
     /**
      * Get string representation of airplane
      *
@@ -135,4 +149,3 @@ public class AirPlane extends AirObject {
             + numEngines;
     }
 }
-

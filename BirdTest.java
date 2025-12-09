@@ -4,8 +4,9 @@ import student.TestCase;
  * Test class for Bird
  * Tests validation and toString with mutation coverage
  *
- * @author CS3114/5040 Staff
- * @version Fall 2025
+ * @author Jonah Schepers
+ * @author Rowan Muhoberac
+ * @version December 8, 2025
  */
 public class BirdTest extends TestCase {
 
@@ -28,6 +29,7 @@ public class BirdTest extends TestCase {
         assertFalse(b.isValid());
     }
 
+
     /**
      * Test validation - null type
      */
@@ -35,6 +37,7 @@ public class BirdTest extends TestCase {
         Bird b = new Bird("B1", 1, 1, 1, 1, 1, 1, null, 1);
         assertFalse(b.isValid());
     }
+
 
     /**
      * Test validation - zero number
@@ -44,19 +47,21 @@ public class BirdTest extends TestCase {
         assertFalse(b.isValid());
     }
 
+
     /**
      * Test validation - negative coordinates
      */
     public void testInvalidNegativeCoordinates() {
         Bird b1 = new Bird("B1", -1, 1, 1, 1, 1, 1, "Eagle", 1);
         assertFalse(b1.isValid());
-        
+
         Bird b2 = new Bird("B1", 1, -1, 1, 1, 1, 1, "Eagle", 1);
         assertFalse(b2.isValid());
-        
+
         Bird b3 = new Bird("B1", 1, 1, -1, 1, 1, 1, "Eagle", 1);
         assertFalse(b3.isValid());
     }
+
 
     /**
      * Test validation - coordinates too large
@@ -64,13 +69,14 @@ public class BirdTest extends TestCase {
     public void testInvalidCoordinatesTooLarge() {
         Bird b1 = new Bird("B1", 1024, 1, 1, 1, 1, 1, "Eagle", 1);
         assertFalse(b1.isValid());
-        
+
         Bird b2 = new Bird("B1", 1, 1024, 1, 1, 1, 1, "Eagle", 1);
         assertFalse(b2.isValid());
-        
+
         Bird b3 = new Bird("B1", 1, 1, 1024, 1, 1, 1, "Eagle", 1);
         assertFalse(b3.isValid());
     }
+
 
     /**
      * Test validation - zero widths
@@ -78,13 +84,14 @@ public class BirdTest extends TestCase {
     public void testInvalidZeroWidths() {
         Bird b1 = new Bird("B1", 1, 1, 1, 0, 1, 1, "Eagle", 1);
         assertFalse(b1.isValid());
-        
+
         Bird b2 = new Bird("B1", 1, 1, 1, 1, 0, 1, "Eagle", 1);
         assertFalse(b2.isValid());
-        
+
         Bird b3 = new Bird("B1", 1, 1, 1, 1, 1, 0, "Eagle", 1);
         assertFalse(b3.isValid());
     }
+
 
     /**
      * Test validation - extends beyond world
@@ -92,13 +99,14 @@ public class BirdTest extends TestCase {
     public void testInvalidExtendsBeyond() {
         Bird b1 = new Bird("B1", 1000, 1, 1, 100, 1, 1, "Eagle", 1);
         assertFalse(b1.isValid());
-        
+
         Bird b2 = new Bird("B1", 1, 1000, 1, 1, 100, 1, "Eagle", 1);
         assertFalse(b2.isValid());
-        
+
         Bird b3 = new Bird("B1", 1, 1, 1000, 1, 1, 100, "Eagle", 1);
         assertFalse(b3.isValid());
     }
+
 
     /**
      * Test validation - boundary values
@@ -106,9 +114,8 @@ public class BirdTest extends TestCase {
     public void testBoundaryValues() {
         Bird b1 = new Bird("B1", 0, 0, 0, 1, 1, 1, "Eagle", 1);
         assertTrue(b1.isValid());
-        
+
         Bird b2 = new Bird("B2", 1023, 1023, 1023, 1, 1, 1, "Eagle", 100);
         assertTrue(b2.isValid());
     }
 }
-

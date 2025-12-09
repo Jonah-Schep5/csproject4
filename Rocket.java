@@ -1,8 +1,9 @@
 /**
  * Represents a rocket in the air traffic control system.
  *
- * @author CS3114/5040 Staff
- * @version Fall 2025
+ * @author Jonah Schepers
+ * @author Rowan Muhoberac
+ * @version December 8, 2025
  */
 public class Rocket extends AirObject {
     /**
@@ -37,12 +38,21 @@ public class Rocket extends AirObject {
      * @param trajectory
      *            The trajectory
      */
-    public Rocket(String name, int xorig, int yorig, int zorig, int xwidth,
-        int ywidth, int zwidth, int ascentRate, double trajectory) {
+    public Rocket(
+        String name,
+        int xorig,
+        int yorig,
+        int zorig,
+        int xwidth,
+        int ywidth,
+        int zwidth,
+        int ascentRate,
+        double trajectory) {
         super(name, xorig, yorig, zorig, xwidth, ywidth, zwidth);
         this.ascentRate = ascentRate;
         this.trajectory = trajectory;
     }
+
 
     /**
      * Get the ascent rate
@@ -53,6 +63,7 @@ public class Rocket extends AirObject {
         return ascentRate;
     }
 
+
     /**
      * Get the trajectory
      *
@@ -61,6 +72,7 @@ public class Rocket extends AirObject {
     public double getTrajectory() {
         return trajectory;
     }
+
 
     /**
      * Check if this rocket is valid
@@ -101,6 +113,7 @@ public class Rocket extends AirObject {
         return !((trajectory < 0) || (ascentRate < 0));
     }
 
+
     /**
      * Get string representation of rocket
      *
@@ -108,9 +121,8 @@ public class Rocket extends AirObject {
      */
     @Override
     public String toString() {
-        return "Rocket " + getName() + " " + getXorig() + " " + getYorig()
-            + " " + getZorig() + " " + getXwidth() + " " + getYwidth() + " "
+        return "Rocket " + getName() + " " + getXorig() + " " + getYorig() + " "
+            + getZorig() + " " + getXwidth() + " " + getYwidth() + " "
             + getZwidth() + " " + ascentRate + " " + trajectory;
     }
 }
-

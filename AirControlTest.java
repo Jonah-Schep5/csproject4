@@ -15,7 +15,6 @@ public class AirControlTest extends TestCase {
         // Nothing here
     }
 
-
     /**
      * Get code coverage of the class declaration.
      *
@@ -25,7 +24,6 @@ public class AirControlTest extends TestCase {
         AirControl recstore = new AirControl();
         assertNotNull(recstore);
     }
-
 
     // ----------------------------------------------------------
     /**
@@ -39,78 +37,80 @@ public class AirControlTest extends TestCase {
         WorldDB w = new WorldDB(rnd);
 
         assertTrue(w.add(new Balloon("B1", 10, 11, 11, 21, 12, 31, "hot_air",
-            15)));
+                15)));
         assertTrue(w.add(new AirPlane("Air1", 0, 10, 1, 20, 2, 30, "USAir", 717,
-            4)));
+                4)));
         assertTrue(w.add(new Drone("Air2", 100, 1010, 101, 924, 2, 900,
-            "Droners", 3)));
+                "Droners", 3)));
         assertTrue(w.add(new Bird("pterodactyl", 0, 100, 20, 10, 50, 50,
-            "Dinosaur", 1)));
+                "Dinosaur", 1)));
         assertFalse(w.add(new Bird("pterodactyl", 0, 100, 20, 10, 50, 50,
-            "Dinosaur", 1)));
+                "Dinosaur", 1)));
         assertTrue(w.add(new Rocket("Enterprise", 0, 100, 20, 10, 50, 50, 5000,
-            99.29)));
+                99.29)));
 
         assertFuzzyEquals("Rocket Enterprise 0 100 20 10 50 50 5000 99.29", w
-            .delete("Enterprise"));
+                .delete("Enterprise"));
 
         assertFuzzyEquals("Airplane Air1 0 10 1 20 2 30 USAir 717 4", w.print(
-            "Air1"));
+                "Air1"));
         assertNull(w.print("air1"));
 
         assertFuzzyEquals("I (0, 0, 0, 1024, 1024, 1024) 0\r\n"
-            + "  I (0, 0, 0, 512, 1024, 1024) 1\r\n"
-            + "    Leaf with 3 objects (0, 0, 0, 512, 512, 1024) 2\r\n"
-            + "    (Airplane Air1 0 10 1 20 2 30 USAir 717 4)\r\n"
-            + "    (Balloon B1 10 11 11 21 12 31 hot_air 15)\r\n"
-            + "    (Bird pterodactyl 0 100 20 10 50 50 Dinosaur 1)\r\n"
-            + "    Leaf with 1 objects (0, 512, 0, 512, 512, 1024) 2\r\n"
-            + "    (Drone Air2 100 1010 101 924 2 900 Droners 3)\r\n"
-            + "  Leaf with 1 objects (512, 0, 0, 512, 1024, 1024) 1\r\n"
-            + "  (Drone Air2 100 1010 101 924 2 900 Droners 3)\r\n"
-            + "5 Bintree nodes printed\r\n", w.printbintree());
+                + "  I (0, 0, 0, 512, 1024, 1024) 1\r\n"
+                + "    Leaf with 3 objects (0, 0, 0, 512, 512, 1024) 2\r\n"
+                + "    (Airplane Air1 0 10 1 20 2 30 USAir 717 4)\r\n"
+                + "    (Balloon B1 10 11 11 21 12 31 hot_air 15)\r\n"
+                + "    (Bird pterodactyl 0 100 20 10 50 50 Dinosaur 1)\r\n"
+                + "    Leaf with 1 objects (0, 512, 0, 512, 512, 1024) 2\r\n"
+                + "    (Drone Air2 100 1010 101 924 2 900 Droners 3)\r\n"
+                + "  Leaf with 1 objects (512, 0, 0, 512, 1024, 1024) 1\r\n"
+                + "  (Drone Air2 100 1010 101 924 2 900 Droners 3)\r\n"
+                + "5 Bintree nodes printed\r\n", w.printbintree());
 
         assertFuzzyEquals("Node has depth 3, Value (null)\r\n"
-            + "Node has depth 3, "
-            + "Value (Airplane Air1 0 10 1 20 2 30 USAir 717 4)\r\n"
-            + "Node has depth 1, "
-            + "Value (Drone Air2 100 1010 101 924 2 900 Droners 3)\r\n"
-            + "Node has depth 2, "
-            + "Value (Balloon B1 10 11 11 21 12 31 hot_air 15)\r\n"
-            + "Node has depth 2, "
-            + "Value (Bird pterodactyl 0 100 20 10 50 50 Dinosaur 1)\r\n"
-            + "4 skiplist nodes printed\r\n", w.printskiplist());
+                + "Node has depth 3, "
+                + "Value (Airplane Air1 0 10 1 20 2 30 USAir 717 4)\r\n"
+                + "Node has depth 1, "
+                + "Value (Drone Air2 100 1010 101 924 2 900 Droners 3)\r\n"
+                + "Node has depth 2, "
+                + "Value (Balloon B1 10 11 11 21 12 31 hot_air 15)\r\n"
+                + "Node has depth 2, "
+                + "Value (Bird pterodactyl 0 100 20 10 50 50 Dinosaur 1)\r\n"
+                + "4 skiplist nodes printed\r\n", w.printskiplist());
 
         assertFuzzyEquals("Found these records in the range a to z\r\n"
-            + "Bird pterodactyl 0 100 20 10 50 50 Dinosaur 1\r\n", w.rangeprint(
-                "a", "z"));
+                + "Bird pterodactyl 0 100 20 10 50 50 Dinosaur 1\r\n",
+                w.rangeprint(
+                        "a", "z"));
         assertFuzzyEquals("Found these records in the range a to l\r\n", w
-            .rangeprint("a", "l"));
+                .rangeprint("a", "l"));
         assertNull(w.rangeprint("z", "a"));
 
         assertFuzzyEquals("The following collisions exist in the database:\r\n"
-            + "In leaf node (0, 0, 0, 512, 512, 1024) 2\r\n"
-            + "(Airplane Air1 0 10 1 20 2 30 USAir 717 4) "
-            + "and (Balloon B1 10 11 11 21 12 31 hot_air 15)\r\n"
-            + "In leaf node (0, 512, 0, 512, 512, 1024) 2\r\n"
-            + "In leaf node (512, 0, 0, 512, 1024, 1024) 1\r\n", w
-                .collisions());
+                + "In leaf node (0, 0, 0, 512, 512, 1024) 2\r\n"
+                + "(Airplane Air1 0 10 1 20 2 30 USAir 717 4) "
+                + "and (Balloon B1 10 11 11 21 12 31 hot_air 15)\r\n"
+                + "In leaf node (0, 512, 0, 512, 512, 1024) 2\r\n"
+                + "In leaf node (512, 0, 0, 512, 1024, 1024) 1\r\n",
+                w
+                        .collisions());
 
         assertFuzzyEquals(
-            "The following objects intersect (0 0 0 1024 1024 1024):\r\n"
-                + "In Internal node (0, 0, 0, 1024, 1024, 1024) 0\r\n"
-                + "In Internal node (0, 0, 0, 512, 1024, 1024) 1\r\n"
-                + "In leaf node (0, 0, 0, 512, 512, 1024) 2\r\n"
-                + "Airplane Air1 0 10 1 20 2 30 USAir 717 4\r\n"
-                + "Balloon B1 10 11 11 21 12 31 hot_air 15\r\n"
-                + "Bird pterodactyl 0 100 20 10 50 50 Dinosaur 1\r\n"
-                + "In leaf node (0, 512, 0, 512, 512, 1024) 2\r\n"
-                + "Drone Air2 100 1010 101 924 2 900 Droners 3\r\n"
-                + "In leaf node (512, 0, 0, 512, 1024, 1024) 1\r\n"
-                + "5 nodes were visited in the bintree\r\n", w.intersect(0, 0,
-                    0, 1024, 1024, 1024));
+                "The following objects intersect (0 0 0 1024 1024 1024):\r\n"
+                        + "In Internal node (0, 0, 0, 1024, 1024, 1024) 0\r\n"
+                        + "In Internal node (0, 0, 0, 512, 1024, 1024) 1\r\n"
+                        + "In leaf node (0, 0, 0, 512, 512, 1024) 2\r\n"
+                        + "Airplane Air1 0 10 1 20 2 30 USAir 717 4\r\n"
+                        + "Balloon B1 10 11 11 21 12 31 hot_air 15\r\n"
+                        + "Bird pterodactyl 0 100 20 10 50 50 Dinosaur 1\r\n"
+                        + "In leaf node (0, 512, 0, 512, 512, 1024) 2\r\n"
+                        + "Drone Air2 100 1010 101 924 2 900 Droners 3\r\n"
+                        + "In leaf node (512, 0, 0, 512, 1024, 1024) 1\r\n"
+                        + "5 nodes were visited in the bintree\r\n",
+                w.intersect(0, 0,
+                        0, 1024, 1024, 1024));
     }
-
 
     // ----------------------------------------------------------
     /**
@@ -141,23 +141,23 @@ public class AirControlTest extends TestCase {
         assertFalse(w.add(new Rocket("r", 1, 1, 1, 1, 1, 1, -1, 1.1)));
         assertFalse(w.add(new Rocket("r", 1, 1, 1, 1, 1, 1, 1, -1.1)));
         assertFalse(w.add(new AirPlane("a", 2000, 1, 1, 1, 1, 1, "Alaska", 1,
-            1)));
+                1)));
         assertFalse(w.add(new AirPlane("a", 1, 2000, 1, 1, 1, 1, "Alaska", 1,
-            1)));
+                1)));
         assertFalse(w.add(new AirPlane("a", 1, 1, 2000, 1, 1, 1, "Alaska", 1,
-            1)));
+                1)));
         assertFalse(w.add(new AirPlane("a", 1, 1, 1, 2000, 1, 1, "Alaska", 1,
-            1)));
+                1)));
         assertFalse(w.add(new AirPlane("a", 1, 1, 1, 1, 2000, 1, "Alaska", 1,
-            1)));
+                1)));
         assertFalse(w.add(new AirPlane("a", 1, 1, 1, 1, 1, 2000, "Alaska", 1,
-            1)));
+                1)));
         assertFalse(w.add(new AirPlane("a", 1000, 1, 1, 1000, 1, 1, "Alaska", 1,
-            1)));
+                1)));
         assertFalse(w.add(new AirPlane("a", 1, 1000, 1, 1, 1000, 1, "Alaska", 1,
-            1)));
+                1)));
         assertFalse(w.add(new AirPlane("a", 1, 1, 1000, 1, 1, 1000, "Alaska", 1,
-            1)));
+                1)));
         assertNull(w.delete(null));
         assertNull(w.print(null));
         assertNull(w.rangeprint(null, "a"));
@@ -179,7 +179,6 @@ public class AirControlTest extends TestCase {
         assertNull(w.intersect(1, 1, 1000, 1, 1, 1000));
     }
 
-
     // ----------------------------------------------------------
     /**
      * Test empty: Check various returns from commands on empty database
@@ -191,17 +190,17 @@ public class AirControlTest extends TestCase {
         assertNull(w.delete("hello"));
         assertFuzzyEquals("SkipList is empty", w.printskiplist());
         assertFuzzyEquals("E (0, 0, 0, 1024, 1024, 1024) 0\r\n"
-            + "1 Bintree nodes printed\r\n", w.printbintree());
+                + "1 Bintree nodes printed\r\n", w.printbintree());
         assertNull(w.print("hello"));
         assertFuzzyEquals("Found these records in the range begin to end\n", w
-            .rangeprint("begin", "end"));
+                .rangeprint("begin", "end"));
         assertFuzzyEquals("The following collisions exist in the database:\n", w
-            .collisions());
+                .collisions());
         assertFuzzyEquals("The following objects intersect (1, 1, 1, 1, 1, 1)\n"
-            + "1 nodes were visited in the bintree\n", w.intersect(1, 1, 1, 1,
-                1, 1));
+                + "1 nodes were visited in the bintree\n",
+                w.intersect(1, 1, 1, 1,
+                        1, 1));
     }
-
 
     // ----------------------------------------------------------
     /**
@@ -216,11 +215,11 @@ public class AirControlTest extends TestCase {
 
         // Add some objects
         assertTrue(w.add(new Balloon("Alpha", 10, 10, 10, 20, 20, 20, "hot",
-            5)));
+                5)));
         assertTrue(w.add(new Balloon("Beta", 50, 50, 50, 30, 30, 30, "cold",
-            3)));
+                3)));
         assertTrue(w.add(new Balloon("Gamma", 100, 100, 100, 25, 25, 25, "hot",
-            7)));
+                7)));
 
         // Verify we can find them
         assertNotNull(w.print("Alpha"));
@@ -229,11 +228,10 @@ public class AirControlTest extends TestCase {
 
         // Verify print output
         assertFuzzyEquals("Balloon Alpha 10 10 10 20 20 20 hot 5", w.print(
-            "Alpha"));
+                "Alpha"));
         assertFuzzyEquals("Balloon Beta 50 50 50 30 30 30 cold 3", w.print(
-            "Beta"));
+                "Beta"));
     }
-
 
     // ----------------------------------------------------------
     /**
@@ -248,18 +246,17 @@ public class AirControlTest extends TestCase {
 
         // Add an object
         assertTrue(w.add(new Balloon("Delta", 10, 10, 10, 20, 20, 20, "hot",
-            5)));
+                5)));
 
         // Try to add duplicate - should fail
         assertFalse(w.add(new Balloon("Delta", 30, 30, 30, 40, 40, 40, "cold",
-            3)));
+                3)));
 
         // Original should still be there with original values
         String result = w.print("Delta");
         assertNotNull(result);
         assertFuzzyEquals("Balloon Delta 10 10 10 20 20 20 hot 5", result);
     }
-
 
     // ----------------------------------------------------------
     /**
@@ -274,9 +271,9 @@ public class AirControlTest extends TestCase {
 
         // Add objects
         assertTrue(w.add(new Balloon("Echo", 10, 10, 10, 20, 20, 20, "hot",
-            5)));
+                5)));
         assertTrue(w.add(new Balloon("Foxtrot", 50, 50, 50, 30, 30, 30, "cold",
-            3)));
+                3)));
 
         // Delete one
         String deleted = w.delete("Echo");
@@ -293,7 +290,6 @@ public class AirControlTest extends TestCase {
         assertNull(w.delete("NonExistent"));
     }
 
-
     // ----------------------------------------------------------
     /**
      * Test SkipList range query
@@ -307,13 +303,13 @@ public class AirControlTest extends TestCase {
 
         // Add objects with different names
         assertTrue(w.add(new Balloon("Apple", 10, 10, 10, 20, 20, 20, "hot",
-            5)));
+                5)));
         assertTrue(w.add(new Balloon("Banana", 50, 50, 50, 30, 30, 30, "cold",
-            3)));
+                3)));
         assertTrue(w.add(new Balloon("Cherry", 100, 100, 100, 25, 25, 25, "hot",
-            7)));
+                7)));
         assertTrue(w.add(new Balloon("Date", 150, 150, 150, 35, 35, 35, "cold",
-            2)));
+                2)));
 
         // Range query that includes some
         String result = w.rangeprint("Banana", "Date");
@@ -329,7 +325,6 @@ public class AirControlTest extends TestCase {
         assertFuzzyEquals("Found these records in the range X to Y\n", empty);
     }
 
-
     // ----------------------------------------------------------
     /**
      * Test SkipList alphabetical ordering
@@ -343,11 +338,11 @@ public class AirControlTest extends TestCase {
 
         // Add objects in non-alphabetical order
         assertTrue(w.add(new Balloon("Zulu", 10, 10, 10, 20, 20, 20, "hot",
-            5)));
+                5)));
         assertTrue(w.add(new Balloon("Alpha", 50, 50, 50, 30, 30, 30, "cold",
-            3)));
+                3)));
         assertTrue(w.add(new Balloon("Mike", 100, 100, 100, 25, 25, 25, "hot",
-            7)));
+                7)));
 
         // Print skiplist and verify alphabetical ordering
         String skiplist = w.printskiplist();
@@ -358,7 +353,6 @@ public class AirControlTest extends TestCase {
         assertTrue(skiplist.contains("Mike"));
         assertTrue(skiplist.contains("Zulu"));
     }
-
 
     // ----------------------------------------------------------
     /**
@@ -374,12 +368,12 @@ public class AirControlTest extends TestCase {
         // Add different types of objects
         assertTrue(w.add(new Balloon("B1", 10, 10, 10, 20, 20, 20, "hot", 5)));
         assertTrue(w.add(new AirPlane("A1", 50, 50, 50, 30, 30, 30, "Delta",
-            123, 2)));
+                123, 2)));
         assertTrue(w.add(new Drone("D1", 100, 100, 100, 25, 25, 25, "DJI", 4)));
         assertTrue(w.add(new Bird("Bird1", 150, 150, 150, 15, 15, 15, "Eagle",
-            1)));
+                1)));
         assertTrue(w.add(new Rocket("R1", 200, 200, 200, 40, 40, 40, 1000,
-            45.5)));
+                45.5)));
 
         // Verify all can be found
         assertNotNull(w.print("B1"));
@@ -396,7 +390,6 @@ public class AirControlTest extends TestCase {
         assertTrue(w.print("R1").contains("Rocket"));
     }
 
-
     // ----------------------------------------------------------
     /**
      * Test case sensitivity in SkipList
@@ -410,7 +403,7 @@ public class AirControlTest extends TestCase {
 
         // Add object with specific case
         assertTrue(w.add(new Balloon("TestCase", 10, 10, 10, 20, 20, 20, "hot",
-            5)));
+                5)));
 
         // Verify exact match works
         assertNotNull(w.print("TestCase"));
@@ -420,7 +413,6 @@ public class AirControlTest extends TestCase {
         assertNull(w.print("TESTCASE"));
         assertNull(w.print("TeStCaSe"));
     }
-
 
     // ----------------------------------------------------------
     /**
@@ -437,7 +429,7 @@ public class AirControlTest extends TestCase {
         for (int i = 0; i < 20; i++) {
             String name = "Object" + i;
             assertTrue(w.add(new Balloon(name, i * 10, i * 10, i * 10, 20, 20,
-                20, "hot", 5)));
+                    20, "hot", 5)));
         }
 
         // Verify all are there
@@ -461,7 +453,6 @@ public class AirControlTest extends TestCase {
         }
     }
 
-
     // ----------------------------------------------------------
     /**
      * Test range query edge cases
@@ -477,7 +468,7 @@ public class AirControlTest extends TestCase {
         assertTrue(w.add(new Balloon("A", 10, 10, 10, 20, 20, 20, "hot", 5)));
         assertTrue(w.add(new Balloon("M", 50, 50, 50, 30, 30, 30, "cold", 3)));
         assertTrue(w.add(new Balloon("Z", 100, 100, 100, 25, 25, 25, "hot",
-            7)));
+                7)));
 
         // Test backwards range (should return null or error)
         assertNull(w.rangeprint("Z", "A"));
@@ -495,7 +486,6 @@ public class AirControlTest extends TestCase {
         assertTrue(all.contains("Z"));
     }
 
-
     // ----------------------------------------------------------
     /**
      * Test clear functionality (if implemented)
@@ -509,9 +499,9 @@ public class AirControlTest extends TestCase {
 
         // Add objects
         assertTrue(w.add(new Balloon("Test1", 10, 10, 10, 20, 20, 20, "hot",
-            5)));
+                5)));
         assertTrue(w.add(new Balloon("Test2", 50, 50, 50, 30, 30, 30, "cold",
-            3)));
+                3)));
 
         // Clear
         w.clear();
@@ -523,14 +513,13 @@ public class AirControlTest extends TestCase {
 
         // Should be able to add again
         assertTrue(w.add(new Balloon("Test1", 100, 100, 100, 20, 20, 20, "hot",
-            5)));
-    }
-    // Add these 5 new test cases to the end of AirControlTest.java file:
+                5)));
+    }    // dd these 5 new test cases to the end of AirControlTest.java file:
 
 
-    // ----------------------------------------------------------
-    /**
-     * Test Bintree spatial partitioning with overlapping objects
+        // 
+       /**
+         * est Bintree spatial partitioning with overlapping objects
      *
      * @throws Exception
      */
@@ -561,7 +550,6 @@ public class AirControlTest extends TestCase {
         assertTrue(intersect.contains("Large2"));
     }
 
-
     // ----------------------------------------------------------
     /**
      * Test collision detection with adjacent non-overlapping objects
@@ -570,12 +558,12 @@ public class AirControlTest extends TestCase {
      */
     public void testCollisionDetectionAdjacent() throws Exception {
         Random rnd = new Random();
-        rnd.setSeed(11223);
-        WorldDB w = new WorldDB(rnd);
+     
 
-        // Add adjacent objects that touch but don't overlap
-        assertTrue(w.add(new Balloon("Adjacent1", 100, 100, 100, 50, 50, 50,
-            "hot", 5)));
+    
+
+                      "hot", 5)));
+
         assertTrue(w.add(new Balloon("Adjacent2", 150, 100, 100, 50, 50, 50,
             "cold", 3)));
 
@@ -617,16 +605,16 @@ public class AirControlTest extends TestCase {
         assertTrue(w.add(new Balloon("MaxEdge", 1023, 1023, 1023, 1, 1, 1,
             "hot", 2)));
 
-        // Verify all are in the database
-        assertNotNull(w.print("Origin"));
-        assertNotNull(w.print("Corner"));
-        assertNotNull(w.print("MaxEdge"));
 
-        // Test intersect at boundaries
-        String intersectOrigin = w.intersect(0, 0, 0, 50, 50, 50);
-        assertNotNull(intersectOrigin);
-        assertTrue(intersectOrigin.contains("Origin"));
+           
 
+    
+    // Test intersect at boundaries
+     
+
+           assertTrue(intersectOrigin.contains("Ori
+
+    
         String intersectCorner = w.intersect(990, 990, 990, 34, 34, 34);
         assertNotNull(intersectCorner);
         assertTrue(intersectCorner.contains("Corner") || intersectCorner
@@ -668,19 +656,19 @@ public class AirControlTest extends TestCase {
         assertFalse(noIntersect.contains("Exact"));
     }
 
-
     // ----------------------------------------------------------
     /**
      * Test mixed operations: add, delete, search, and queries
      *
-     * @throws Exception
-     */
-    public void testMixedOperationsWorkflow() throws Exception {
-        Random rnd = new Random();
-        rnd.setSeed(34343);
-        WorldDB w = new WorldDB(rnd);
+     
 
-        // Phase 1: Add initial set
+           
+
+    rnd.setSeed(34343);
+     
+
+           // Phase 1: Add initial set
+
         assertTrue(w.add(new AirPlane("Flight100", 100, 100, 100, 80, 80, 80,
             "United", 747, 5)));
         assertTrue(w.add(new Drone("Drone1", 200, 200, 200, 30, 30, 30, "DJI",
@@ -718,12 +706,12 @@ public class AirControlTest extends TestCase {
         String collisions = w.collisions();
         assertNotNull(collisions);
 
-        // Phase 5: Intersect query
-        String intersect = w.intersect(0, 0, 0, 500, 500, 500);
-        assertNotNull(intersect);
-        assertTrue(intersect.contains("Flight100"));
-        assertTrue(intersect.contains("Eagle1"));
-        assertTrue(intersect.contains("Falcon9"));
+     
+
+           asse
+
+                  assertTrue(intersect.contains("Falcon9")
+
         assertTrue(intersect.contains("Weather1"));
     }
 
